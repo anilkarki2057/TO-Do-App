@@ -17,6 +17,6 @@ const removeById = async (id) => {
 const updateStatus = async (id, payload) => {
   const { status } = payload;
   if (!status) throw new Error("Status is required");
-  return await model.findOneAndUpdate({ _id: id }, { status }, { nwe: true });
+  return await model.findOneAndUpdate({ _id: id }, { status }, { new: true });
 };
 module.exports = { creat, list, getById, upadae, removeById, updateStatus };
