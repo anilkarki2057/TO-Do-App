@@ -14,4 +14,9 @@ const upadae = async (id, payload) => {
 const removeById = async (id) => {
   return await model.deletOne({ _id: id });
 };
-module.exports = { creat, list, getById, upadae, removeById };
+const updateStatus = async (id, payload) => {
+  const { status } = payload;
+  if (!status) throw new Error("Status is required");
+  return await model.findOneAndUpdate({ _id: id }, { status }, { nwe: true });
+};
+module.exports = { creat, list, getById, upadae, removeById, updateStatus };

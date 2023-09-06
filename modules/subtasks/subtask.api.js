@@ -4,7 +4,7 @@ const subtaskController = require("./subtask.controller");
 // create
 router.post("/", async (req, res, next) => {
   try {
-    const result = await subtaskController.create(req.body);
+    const result = await subtaskController.creat(req.body);
     res.json({ data: result, mssg: "Success" });
   } catch (e) {
     next(e);
@@ -40,11 +40,23 @@ router.put("/:id", async (req, res, next) => {
     next(e);
   }
 });
+
 //removeById
 router.delete("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const result = await subtaskController.removeById(id);
+    res.json({ data: result, mssg: "Success" });
+  } catch (e) {
+    next(e);
+  }
+});
+
+//updatestatus
+router.patch("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const result = await subtaskController.updateStatus(id, req.body);
     res.json({ data: result, mssg: "Success" });
   } catch (e) {
     next(e);
